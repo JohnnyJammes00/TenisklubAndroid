@@ -33,8 +33,11 @@ namespace web.Controllers
                 return NotFound();
             }
 
-            var igralec = await _context.Igralci
-                .FirstOrDefaultAsync(m => m.ID == id);
+             var igralec = await _context.Igralci
+        .Include(s => s.IgralecSkupine)
+            .ThenInclude(e => e.Skupina)
+        .AsNoTracking()
+        .FirstOrDefaultAsync(m => m.ID == id);
             if (igralec == null)
             {
                 return NotFound();
