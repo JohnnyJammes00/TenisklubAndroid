@@ -57,14 +57,29 @@ namespace web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Ime,Priimek")] Igralec igralec)
+        public async Task<IActionResult> Create([Bind("Ime,Priimek")] Igralec igralec)
         {
-            if (ModelState.IsValid)
+
+
+            try
             {
-                _context.Add(igralec);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(igralec);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                 
             }
+            catch (DbUpdateException /* ex */)
+            {
+                
+                //Log the error (uncomment ex variable name and write a log.
+        ModelState.AddModelError("", "Unable to save changes. " +
+            "Try again, and if the problem persists " +
+            "see your system administrator.");
+            }
+            
             return View(igralec);
         }
 
