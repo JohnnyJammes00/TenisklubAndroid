@@ -29,7 +29,7 @@ namespace web
         {
             services.AddControllersWithViews();
             services.AddDbContext<TenisKlubContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("TenisKlubContext")));
+        options.UseSqlServer(Configuration.GetConnectionString("AzureContext")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
             .AddEntityFrameworkStores<TenisKlubContext>()
