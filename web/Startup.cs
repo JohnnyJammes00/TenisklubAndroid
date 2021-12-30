@@ -35,6 +35,9 @@ namespace web
             .AddEntityFrameworkStores<TenisKlubContext>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();
+
+            services.AddDbContext<TenisKubContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("TenisKubContext")));
             
         }
 
