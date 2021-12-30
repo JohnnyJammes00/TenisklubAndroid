@@ -35,6 +35,10 @@ namespace web
             .AddEntityFrameworkStores<TenisKlubContext>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();
+            services.AddSwaggerGen();
+
+            services.AddDbContext<TenisKubContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("TenisKubContext")));
             
         }
 
@@ -66,6 +70,12 @@ namespace web
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
     }
