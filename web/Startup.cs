@@ -37,8 +37,8 @@ namespace web
             .AddDefaultTokenProviders();
             services.AddSwaggerGen();
 
-            services.AddDbContext<TenisKubContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("TenisKubContext")));
+           // services.AddDbContext<TenisKubContext>(options =>
+             //       options.UseSqlServer(Configuration.GetConnectionString("TenisKubContext")));
             
         }
 
