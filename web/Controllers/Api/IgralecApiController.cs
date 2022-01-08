@@ -14,25 +14,25 @@ namespace web.Controllers_Api
     [ApiController]
     public class IgralecApiController : ControllerBase
     {
-        private readonly TenisKubContext _context;
+        private readonly TenisKlubContext _context;
 
-        public IgralecApiController(TenisKubContext context)
+        public IgralecApiController(TenisKlubContext context)
         {
             _context = context;
         }
 
         // GET: api/IgralecApi
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Igralec>>> GetIgralec()
+        public async Task<ActionResult<IEnumerable<Igralec>>> GetIgralci()
         {
-            return await _context.Igralec.ToListAsync();
+            return await _context.Igralci.ToListAsync();
         }
 
         // GET: api/IgralecApi/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Igralec>> GetIgralec(int id)
         {
-            var igralec = await _context.Igralec.FindAsync(id);
+            var igralec = await _context.Igralci.FindAsync(id);
 
             if (igralec == null)
             {
@@ -78,7 +78,7 @@ namespace web.Controllers_Api
         [HttpPost]
         public async Task<ActionResult<Igralec>> PostIgralec(Igralec igralec)
         {
-            _context.Igralec.Add(igralec);
+            _context.Igralci.Add(igralec);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetIgralec", new { id = igralec.ID }, igralec);
@@ -88,13 +88,13 @@ namespace web.Controllers_Api
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteIgralec(int id)
         {
-            var igralec = await _context.Igralec.FindAsync(id);
+            var igralec = await _context.Igralci.FindAsync(id);
             if (igralec == null)
             {
                 return NotFound();
             }
 
-            _context.Igralec.Remove(igralec);
+            _context.Igralci.Remove(igralec);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace web.Controllers_Api
 
         private bool IgralecExists(int id)
         {
-            return _context.Igralec.Any(e => e.ID == id);
+            return _context.Igralci.Any(e => e.ID == id);
         }
     }
 }
