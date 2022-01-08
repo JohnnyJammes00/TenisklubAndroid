@@ -1,0 +1,57 @@
+@model web.Models.Tekma
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Tekma</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Igralec1" class="control-label"></label>
+                <select asp-for="Igralec1" class ="form-control" asp-items="ViewBag.Igralec1ID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Igralec2" class="control-label"></label>
+                <select asp-for="Igralec2" class ="form-control" asp-items="ViewBag.Igralec2ID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Score1" class="control-label"></label>
+                <input asp-for="Score1" class="form-control" />
+                <span asp-validation-for="Score1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Score2" class="control-label"></label>
+                <input asp-for="Score2" class="form-control" />
+                <span asp-validation-for="Score2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Winner" class="control-label"></label>
+                <input asp-for="Winner" class="form-control" />
+                <span asp-validation-for="Winner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IgrisceID" class="control-label"></label>
+                <select asp-for="IgrisceID" class ="form-control" asp-items="ViewBag.IgrisceID"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
